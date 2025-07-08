@@ -1,0 +1,25 @@
+{
+  "name": "qr-generator",
+  "version": "1.0.0",
+  "description": "Generador de codigos QR para enviar por correo",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.12.4",
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "dependencies": {
+    "dotenv": "^17.0.1",
+    "express": "^5.1.0",
+    "mongoose": "^8.16.1",
+    "nodemailer": "^7.0.4",
+    "qr": "^0.5.0",
+    "qrcode": "^1.5.4"
+  }
+}
