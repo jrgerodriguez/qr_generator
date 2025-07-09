@@ -6,4 +6,6 @@ const router = express.Router();
 
 router.post('/submit', controller.submitForm)
 
+router.get('/confirm', controller.confirmAttendance)
+
 export default router;

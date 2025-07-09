@@ -17,7 +17,7 @@ async function submitForm(req, res) {
 
     // unique token
     const qrToken = randomBytes(16).toString("hex");
-    const qrBuffer = await QRCode.toBuffer(`https://example.com/confirm?token=${qrToken}`);
+    const qrBuffer = await QRCode.toBuffer(`https://qr-generator-ldfd.onrender.com/confirm?token=${qrToken}`);
 
     const newUser = new User({
       fname,
@@ -75,5 +75,10 @@ async function submitForm(req, res) {
 }
 
 
-const controllers = { submitForm };
+async function confirmAttendance(req, res) {
+  const token = req.query.token;
+  res.send(token)
+}
+
+const controllers = { submitForm, confirmAttendance };
 export default controllers;
