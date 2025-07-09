@@ -77,7 +77,19 @@ async function submitForm(req, res) {
 
 async function confirmAttendance(req, res) {
   const token = req.query.token;
-  res.send(token)
+  
+  try {
+    const existingToken = await User.findOne({qrToken: token})
+    
+    if(existingToken) {
+      return res.send('El QR es valido ✅')
+    } else {
+      return res.send('El QR no es valido o no existe ❌')
+    }
+
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 const controllers = { submitForm, confirmAttendance };
