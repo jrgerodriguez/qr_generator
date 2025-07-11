@@ -85,7 +85,7 @@ async function confirmAttendance(req, res) {
       
       await User.updateOne(
         {qrToken: token},
-        {$set: {scanned: true, scannedAt: date.Now()}}
+        {$set: {scanned: true, scannedAt: new Date()}}
       )
 
       return res.redirect('/scan-success.html')
