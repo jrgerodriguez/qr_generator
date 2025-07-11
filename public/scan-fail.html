@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bienvenido</title>
+    <title>QR No Válido</title>
     <style>
       * {
         box-sizing: border-box;
@@ -13,7 +13,7 @@
       }
 
       body {
-        background: linear-gradient(135deg, #f0f4f8, #d9e4f5);
+        background: linear-gradient(135deg, #f8d7da, #f5c6cb);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -35,12 +35,12 @@
       .emoji {
         font-size: 3rem;
         margin-bottom: 1rem;
-        animation: bounce 1s infinite;
+        animation: shake 0.6s ease-in-out infinite;
       }
 
       .title {
         font-size: 1.6rem;
-        color: #2e7d32;
+        color: #c62828;
         margin-bottom: 1rem;
       }
 
@@ -76,12 +76,15 @@
         }
       }
 
-      @keyframes bounce {
+      @keyframes shake {
         0%, 100% {
-          transform: translateY(0);
+          transform: translateX(0);
         }
-        50% {
-          transform: translateY(-8px);
+        25% {
+          transform: translateX(-5px);
+        }
+        75% {
+          transform: translateX(5px);
         }
       }
 
@@ -107,9 +110,9 @@
   </head>
   <body>
     <div class="container">
-      <div class="emoji">🎉</div>
-      <h1 class="title">¡Disfruta el evento!</h1>
-      <p class="message">Tu acceso ha sido validado exitosamente.</p>
+      <div class="emoji">👎</div>
+      <h1 class="title">QR no válido</h1>
+      <p class="message">Este código QR no existe o ha sido rechazado. Por favor, intenta de nuevo.</p>
     </div>
   </body>
 </html>

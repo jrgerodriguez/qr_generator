@@ -82,9 +82,15 @@ async function confirmAttendance(req, res) {
     const existingToken = await User.findOne({qrToken: token})
     
     if(existingToken) {
+      
+      await User.updateOne(
+        {qrToken: token},
+        {$set: {scanned: true, scannedAt: date.Now()}}
+      )
+
       return res.redirect('/scan-success.html')
     } else {
-      return res.send('El QR no es valido o no existe ❌')
+      return res.redirect('/scan-fail.html')
     }
 
   } catch (error) {
