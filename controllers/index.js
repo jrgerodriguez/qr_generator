@@ -77,26 +77,30 @@ async function submitForm(req, res) {
 
 async function confirmAttendance(req, res) {
   const token = req.query.token;
-  
-  try {
-    const existingToken = await User.findOne({qrToken: token})
-    
-    if(existingToken) {
-      
-      await User.updateOne(
-        {qrToken: token},
-        {$set: {scanned: true, scannedAt: new Date()}}
-      )
 
-      return res.redirect('/scan-success.html')
-    } else {
-      return res.redirect('/scan-fail.html')
+  try {
+    const user = await User.findOne({ qrToken: token });
+
+    if (!user) {
+      return res.redirect('/scan-fail.html'); 
     }
 
+    if (user.scanned) {
+      return res.redirect('/already-scanned.html'); 
+    }
+
+    user.scanned = true;
+    user.scannedAt = new Date();
+    await user.save();
+
+    return res.redirect('/scan-success.html');
+
   } catch (error) {
-    console.error(error)
+    console.error('Error confirming attendance:', error);
+    return res.status(500).send('Internal Server Error');
   }
 }
+
 
 const controllers = { submitForm, confirmAttendance };
 export default controllers;
